@@ -1,0 +1,62 @@
+# r2dbc
+spring:
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        format_sql: false
+        query.in_clause_parameter_padding: true
+
+  datasource:
+    hikari:
+      minimum-idle: 20
+      maximum-pool-size: 100
+      connection-timeout: 3000 #30s
+      idle-timeout: 600000 #10m
+      validation-timeout: 60000 #1m
+
+  devtools.livereload.enabled: false
+
+logging:
+  level:
+    root: warn
+  pattern:
+    console: "[%d{yyyy-MM-dd HH:mm:ss.SSS}] [%thread] [%-5level] %class{0}.%M\\(%L\\){magenta}| %msg%n"
+
+#local
+---
+spring:
+  h2:
+    console:
+      enabled: true
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        format_sql: true
+
+  datasource:
+    hikari:
+      driver-class-name: org.h2.Driver
+      jdbc-url: jdbc:h2:mem:kopring
+      username: root
+      password:
+      minimum-idle: 1
+      maximum-pool-size: 5
+
+  devtools.livereload.enabled: true
+
+logging:
+  level:
+    root: info
+    org.springframework.web.filter: debug
+    com.example.kopring: debug
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace
+    org.hibernate.type.BasicTypeRegistry: warn
+  pattern:
+    console: "[%d{HH:mm:ss}] [%thread] %clr([%-5level]) %class{0}.%M%clr(\\(%L\\)){magenta}| %msg%n"
