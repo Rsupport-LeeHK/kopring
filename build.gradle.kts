@@ -8,11 +8,14 @@ plugins {
     kotlin("plugin.jpa") version "1.5.10"
     kotlin("plugin.allopen") version "1.5.10"
     kotlin("plugin.noarg") version "1.5.10"
+    kotlin("kapt") version "1.5.10"
 }
 
 group = "com.example"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
+
+val querydslVersion = "4.4.0"
 
 configurations {
     compileOnly {
@@ -33,6 +36,9 @@ dependencies {
     implementation("au.com.console:kassava:2.1.0-rc.1")
     runtimeOnly("com.h2database:h2")
     runtimeOnly("mysql:mysql-connector-java")
+
+    implementation("com.querydsl:querydsl-jpa")
+    kapt("com.querydsl:querydsl-apt:$querydslVersion:jpa")
 
     implementation("org.springframework.boot:spring-boot-starter-web")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

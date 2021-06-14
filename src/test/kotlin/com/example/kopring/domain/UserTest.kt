@@ -1,8 +1,8 @@
 package com.example.kopring.domain
 
+import com.example.kopring.logger
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
-
-import org.junit.jupiter.api.Assertions.*
 
 internal class UserTest {
 
@@ -12,11 +12,11 @@ internal class UserTest {
         val user = User(username = "user-001", password = "password", name = "USER 001")
 
         //when
-        println(user.toString())
+        logger.debug(user.toString())
 
         //expect
         assertEquals(user.toString(),
-            "User(id=${user.id}, username=${user.username}, name=${user.name}, enabled=${user.enabled}, mobile=${user.mobile}, initPassword=${user.initPassword}, createdBy=${user.createdBy}, createdDate=${user.createdDate})")
+            "User(id=${user.id}, username=${user.username}, name=${user.name}, enabled=${user.enabled}, mobile=${user.mobile}, initPassword=${user.initPassword}, createdBy=${user.createdBy}, createdDate=${user.createdDate}, company=${user.company})")
     }
 
     @Test
